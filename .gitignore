@@ -1,0 +1,4 @@
+entry.o
+kernel.elf
+kernel.o
+qemu-completion.sh
