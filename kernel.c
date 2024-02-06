@@ -1,14 +1,11 @@
 #include <stdint.h>
 #include <stddef.h>
+#include "uart.h"
 
-#define UART0 0x10000000
-#define UARTAddr(offset) ((unsigned char *)(UART0 + offset))
-#define UARTWrite(offset, value) (*(UARTAddr(offset)) = (value))
-#define UARTRead(offset) (*(UARTAddr(offset)))
 #define KEY_ENTER 13
 
 void putchar(char c) {
-	UARTWrite(0, c);
+	uart_write(0, c);
 }
  
 void print(const char * str) {
@@ -61,7 +58,7 @@ void kmain(void) {
   buffer_init();
 
   while(1) {
-    char in = UARTRead(0);
+    char in = uart_read(0);
 		// Read input from the UART
     if(in == 'q'){
       goto done;
