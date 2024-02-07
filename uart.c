@@ -12,5 +12,19 @@ void uart_init() {
     uart_write(1, 0x00);
 
     // leave baud rate mode
-    uart_write(LINE_CONTROL_REGISTER, LINE_CONTROL_REGISTER_EIGHT_BITS_NO_PARITY)
+    uart_write(LINE_CONTROL_REGISTER, LINE_CONTROL_REGISTER_EIGHT_BITS_NO_PARITY);
+
+    // enable and clear FIFO
+    uart_write(
+        FIFO_CONTROL_REGISTER, 
+        FIFO_CONTROL_REGISTER_ENABLE |
+        FIFO_CONTROL_REGISTER_CLEAR_TX |
+        FIFO_CONTROL_REGISTER_CLEAR_RX
+    );
+
+    // enable interrupts again
+    uart_write(INTERRUPT_ENABLE_REGISTER,
+        INTERRUPT_ENABLE_REGISTER_ENABLE_RX |
+        INTERRUPT_ENABLE_REGISTER_ENABLE_TX
+    );
 }
