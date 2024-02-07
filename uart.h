@@ -13,8 +13,8 @@
  * transmitter empty, line status and modem status registers to the INT output pin.
  */
 #define INTERRUPT_ENABLE_REGISTER 0x1
-#define INTERRUPT_ENABLE_REGISTER_ENABLE_RX 0x1
-#define INTERRUPT_ENABLE_REGISTER_ENABLE_TX 0x2
+#define INTERRUPT_ENABLE_REGISTER_RX_ENABLE 0x1
+#define INTERRUPT_ENABLE_REGISTER_TX_ENABLE 0x2
 
 
 /* The line Control Register is used to specify the asynchronous data communication format. 
@@ -43,5 +43,8 @@
 #define FIFO_CONTROL_REGISTER_ENABLE 0x1
 #define FIFO_CONTROL_REGISTER_CLEAR_RX 0x2
 #define FIFO_CONTROL_REGISTER_CLEAR_TX 0x4
+
+#define UART_TX_BUFFER_SIZE 32;
+char buffer[UART_TX_BUFFER_SIZE];
 
 #endif

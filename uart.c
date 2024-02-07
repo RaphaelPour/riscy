@@ -24,7 +24,9 @@ void uart_init() {
 
     // enable interrupts again
     uart_write(INTERRUPT_ENABLE_REGISTER,
-        INTERRUPT_ENABLE_REGISTER_ENABLE_RX |
-        INTERRUPT_ENABLE_REGISTER_ENABLE_TX
+        INTERRUPT_ENABLE_REGISTER_RX_ENABLE |
+        INTERRUPT_ENABLE_REGISTER_TX_ENABLE
     );
 }
+
+void uart_putchar(char c) {}
