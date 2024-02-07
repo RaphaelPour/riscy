@@ -34,6 +34,7 @@
  * bit 7:   set baud rate = 0 => don't set baud rate
  */
 #define LINE_CONTROL_REGISTER_EIGHT_BITS_NO_PARITY 0x3
+#define LINE_CONTROL_REGISTER_RX_READY 0x1
 
 /* This register is used to enable the FIFOs, clear the FIFOs, set the receiver FIFO trigger 
  * level, and select the type of DMA signaling.
@@ -44,7 +45,13 @@
 #define FIFO_CONTROL_REGISTER_CLEAR_RX 0x2
 #define FIFO_CONTROL_REGISTER_CLEAR_TX 0x4
 
-#define UART_TX_BUFFER_SIZE 32;
-char buffer[UART_TX_BUFFER_SIZE];
+extern char buf[256];
+
+void uart_init();
+void uart_putchar(const char c);
+void uart_puts(const char * str);
+char uart_getchar();
+void uart_getline();
+void uart_putbuf();
 
 #endif

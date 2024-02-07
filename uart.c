@@ -1,5 +1,7 @@
 #include "uart.h"
 
+char buf[256];
+
 void uart_init() {
     // disable any interrupt, so we can set up some uart settings
     uart_write(INTERRUPT_ENABLE_REGISTER, 0x00); 
@@ -8,7 +10,7 @@ void uart_init() {
     uart_write(LINE_CONTROL_REGISTER, LINE_CONTROL_REGISTER_BAUD_LATCH);
 
     // set baud rate to 38.4K
-    uart_write(0, 0x03);
+    uart_write(0, 0x01);
     uart_write(1, 0x00);
 
     // leave baud rate mode
@@ -29,4 +31,35 @@ void uart_init() {
     );
 }
 
-void uart_putchar(char c) {}
+static int uart_rx_ready() {
+  return uart_read(LINE_CONTROL_REGISTER+LINE_CONTROL_REGISTER_RX_READY);
+}
+
+void uart_putchar(const char c) {
+  uart_write(0, c);
+}
+
+void uart_puts(const char * str) {
+  while(*str != '\0') {
+    uart_putchar(*str);
+    str++;
+  }
+}
+
+void uart_putbuf() {
+  for(int i=0; i<256 || buf[i]; i++)uart_putchar(buf[i]);
+}
+
+void uart_getline() {
+  char c;
+  int i = 0;
+  while((c = uart_getchar()) != 13){
+    buf[i++] = c;
+  }
+  buf[i] = '\0';
+}
+
+char uart_getchar() {
+  while(!uart_rx_ready()){}
+  return uart_read(0);
+}

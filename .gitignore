@@ -1,4 +1,3 @@
-entry.o
 kernel.elf
-kernel.o
+*.o
 qemu-completion.sh
