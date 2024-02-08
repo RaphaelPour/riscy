@@ -17,6 +17,16 @@ tasks:
        done
       - riscv64-linux-gnu-gcc -O0 -c entry.S -o entry.o
       - riscv64-linux-gnu-ld -O0 -T linker.ld -nostdlib *.o -o kernel.elf
+  build-johannes:
+    needs: [clean]
+    cmds:
+      - task build-fedora
+  build-raphael:
+    needs: [clean]
+    cmds:
+      - task build-fedora
+    env:
+      BUILD_FLAGS: "-DBIG_HEX"
   boot:
     cmds:
       - qemu-system-riscv64 -machine virt -bios none -kernel kernel.elf -serial mon:stdio
