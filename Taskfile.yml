@@ -32,7 +32,7 @@ tasks:
       - qemu-system-riscv64 -machine virt -bios none -kernel kernel.elf -serial mon:stdio
   clean:
     cmds:
-      - rm -f *.o kernel.elf riscv64-virt.dtb riscv64-virt.dts
+      - rm -f *.o kernel.elf riscv64-virt.dtb
   generate-device-tree:
     cmds:
       - qemu-system-riscv64 -machine virt -machine dumpdtb=riscv64-virt.dtb
