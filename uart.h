@@ -45,13 +45,7 @@
 #define FIFO_CONTROL_REGISTER_CLEAR_RX 0x2
 #define FIFO_CONTROL_REGISTER_CLEAR_TX 0x4
 
-// extern char buf[256];
-
 void uart_init();
-void uart_putchar(const char c);
-void uart_puts(const char * str);
-char uart_getchar();
-void uart_getline();
-void uart_putbuf();
-
+void uart_transmit(const char c);
+char uart_receive();
 #endif

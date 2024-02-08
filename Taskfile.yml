@@ -12,6 +12,7 @@ tasks:
     cmds:
       - riscv64-linux-gnu-gcc -O0 -Wall -Wextra -c -mcmodel=medany kernel.c -o kernel.o -ffreestanding
       - riscv64-linux-gnu-gcc -O0 -Wall -Wextra -c -mcmodel=medany uart.c -o uart.o -ffreestanding
+      - riscv64-linux-gnu-gcc -O0 -Wall -Wextra -c -mcmodel=medany io.c -o io.o -ffreestanding
       - riscv64-linux-gnu-gcc -O0 -c entry.S -o entry.o
       - riscv64-linux-gnu-ld -O0 -T linker.ld -nostdlib *.o -o kernel.elf
   boot:
