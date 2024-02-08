@@ -2,8 +2,11 @@
 #include <stddef.h>
 #include "uart.h"
 #include "io.h"
+#include "rtc.h"
+#include "strconv.h"
 
-const char * prompt = "riscy> ";
+const char * prompt = " riscy> ";
+
 
 void kmain(void) {
   uart_init();
@@ -11,9 +14,13 @@ void kmain(void) {
   io_puts("Hello evilcookie...\n");
   io_puts("                L<L\n");
   io_puts("                ...I'm expecting you.\n");
+  
+  io_puts(itoa_base(255,16));
+  io_puts("\n");
 
   const char *input; 
   while(1) {
+    io_puts(u64toa(rtc_time()));
     io_puts(prompt);
     input = io_getline();
     io_puts(input);
