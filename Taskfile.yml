@@ -1,5 +1,8 @@
 version: '2'
 
+vars:
+  RTC_BASE_DATE: "localtime"
+
 tasks:
   build:
     needs: [clean]
@@ -11,7 +14,7 @@ tasks:
     needs: [clean]
     cmds:
       - |
-       for file in $(ls \*.c); do
+       for file in $(ls *.c driver/*.c core/*.c); do
          module=${file%.*}
          riscv64-linux-gnu-gcc -O0 {{.BUILD_FLAGS|default ""}} -Wall -Wextra -c -mcmodel=medany $module.c -o $module.o -ffreestanding
        done
@@ -29,7 +32,17 @@ tasks:
       BUILD_FLAGS: "-DBIG_HEX"
   boot:
     cmds:
-      - qemu-system-riscv64 -machine virt -bios none -kernel kernel.elf -serial mon:stdio
+      - qemu-system-riscv64 -machine virt -bios none -kernel kernel.elf -serial mon:stdio -rtc base={{.RTC_BASE_DATE}}
+  boot-johannes:
+    cmds:
+      - task boot
+    vars:
+      RTC_BASE_DATE: "2005-04-18"
+  boot-raphael:
+    cmds:
+      - task boot
+    vars:
+      RTC_BASE_DATE: "1991-2-30"
   clean:
     cmds:
       - rm -f *.o kernel.elf riscv64-virt.dtb

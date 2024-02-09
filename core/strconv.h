@@ -1,6 +1,8 @@
 #ifndef STRCONV_H
 #define STRCONV_H
 
+#include <stdint.h>
+
 const char* itoa_base(int val, int base);
 const char* itoa(int val);
 
