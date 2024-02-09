@@ -45,7 +45,7 @@ tasks:
       RTC_BASE_DATE: "1993-7-30"
   clean:
     cmds:
-      - rm -f *.o kernel.elf riscv64-virt.dtb
+      - rm -f *.o core/*.o driver/*.o kernel.elf riscv64-virt.dtb
   generate-device-tree:
     cmds:
       - qemu-system-riscv64 -machine virt -machine dumpdtb=riscv64-virt.dtb
