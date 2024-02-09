@@ -1,8 +1,10 @@
 #include <stdint.h>
 #include <stddef.h>
 
-#include "core/core.h"
-#include "driver/driver.h"
+#include "core/io.h"
+#include "core/strconv.h"
+#include "driver/rtc.h"
+#include "driver/uart.h"
 
 const char * prompt = " riscy> ";
 
