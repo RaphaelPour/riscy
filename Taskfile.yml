@@ -42,7 +42,7 @@ tasks:
     cmds:
       - task boot
     vars:
-      RTC_BASE_DATE: "1991-2-30"
+      RTC_BASE_DATE: "1991-7-30"
   clean:
     cmds:
       - rm -f *.o kernel.elf riscv64-virt.dtb
