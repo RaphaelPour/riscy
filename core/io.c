@@ -1,4 +1,4 @@
-#include "../driver/driver.h"
+#include "../driver/uart.h"
 #include "io.h"
 
 void io_putchar(const char c) {
