@@ -24,6 +24,8 @@ int departure(int luggage_num, const char *luggage[]) {
     check(abs(1) == 1, "abs(1)=1");
     check(sign(-1) == -1, "sign(-1)=-1");
     check(sign(1) == 1, "sign(1)=1");
+    check(inc(1) == 2, "inc(1)=1");
+    io_puts(itoa(inc(1)));
 
     io_puts("\n** String\n");
     check(str_eq("", ""), "str_eq(\"\",\"\")");

@@ -12,3 +12,14 @@ int sign(int val){
 int abs(int val){
   return val * sign(val);
 }
+
+// https://stackoverflow.com/q/72640997
+int inc(int n) {
+  volatile int result;
+  asm volatile(
+      "addi %0, %1, 1;"
+      : "=r" (result)
+      : "r" (n)
+      );
+  return result;
+}
