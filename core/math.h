@@ -3,5 +3,6 @@
 
 int sign(int val);
 int abs(int val);
+int inc(int n);
 
 #endif
