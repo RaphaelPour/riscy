@@ -16,9 +16,6 @@ void kmain(void) {
   io_puts("Hello evilcookie...\n");
   io_puts("                L<L\n");
   io_puts("                ...I'm expecting you.\n");
-  
-  io_puts(itoa_base(255,16));
-  io_puts("\n");
 
   departure(0,NULL);
 
