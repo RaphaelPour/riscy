@@ -53,6 +53,17 @@ int departure(int luggage_num, const char *luggage[]) {
     free();
     check((size_t) malloc(10) == first_allocation, "free(); malloc(10) == first_allocation");
 
+    int *malloc_a = malloc(sizeof(int));
+    *malloc_a = 500;
+    memset(malloc_a, 0, sizeof(int));
+    check(*malloc_a == 0, "Set value of allocated memory");
+    int *malloc_b = malloc(sizeof(int));
+    check(memcmp(malloc_a, malloc_b, sizeof(int)), "Compare values of two allocated memories (positive)");
+    *malloc_b = 1000;
+    check(!memcmp(malloc_a, malloc_b, sizeof(int)), "Compare values of two allocated memories (negative)");
+
+    memcpy(malloc_b, malloc_a, sizeof(int));
+    check(*malloc_a == *malloc_b, "Copy memory from one address to another");
 
     return 0;
 }
