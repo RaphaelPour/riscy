@@ -3,6 +3,7 @@
 #include "../core/str.h"
 #include "../core/strconv.h"
 #include "../core/math.h"
+#include "../core/memory.h"
 
 void check(int condition, const char *msg) {
   io_puts(msg);
@@ -41,5 +42,17 @@ int departure(int luggage_num, const char *luggage[]) {
 #else
     check(str_eq(itoa_base(255,16), "ff"), "iota_base(255,16) == ff");
 #endif
+
+    io_puts("\n** Memory allocation\n");
+    size_t first_allocation = (size_t) malloc(10);
+    check(first_allocation < (size_t) malloc(10), "malloc(10) < malloc(10)");
+
+    size_t addr_size = 50;
+    size_t addr = (size_t) malloc(addr_size);
+    check(addr + addr_size == (size_t) malloc(10), "malloc(50) + 50 == malloc(10)");
+    free();
+    check((size_t) malloc(10) == first_allocation, "free(); malloc(10) == first_allocation");
+
+
     return 0;
 }
