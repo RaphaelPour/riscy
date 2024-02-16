@@ -3,6 +3,8 @@
 
 #include <stdint.h>
 
+int atoi(const char *s);
+
 const char* itoa_base(int val, int base);
 const char* itoa(int val);
 
