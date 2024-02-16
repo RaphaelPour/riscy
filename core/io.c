@@ -44,7 +44,7 @@ const char* io_getline() {
   static char buffer[256];
   char c;
   int i = 0;
-  while((c = io_getchar()) != 13){
+  while((c = uart_receive()) != 13){
     if(!is_printable(c)) continue;
     buffer[i++] = c;
     io_putchar(c);
@@ -54,6 +54,9 @@ const char* io_getline() {
   return (const char *)buffer;
 }
 
-char io_getchar() {
-  return uart_receive();
+char io_getchar(){
+    char c;
+    for(c=uart_receive();!is_printable(c);c=uart_receive());
+    return c;
 }
+
