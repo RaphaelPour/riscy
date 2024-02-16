@@ -3,8 +3,8 @@
 
 #define HEAP_CAPACITY 64000
 
-char heap[HEAP_CAPACITY] = {0};
-size_t heap_size = 0;
+static char heap[HEAP_CAPACITY] = {0};
+static size_t heap_size = 0;
 
 void *malloc(size_t size) {
     void *addr = heap + heap_size;
