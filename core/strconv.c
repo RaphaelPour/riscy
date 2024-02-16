@@ -1,12 +1,34 @@
 #include <stdint.h>
 #include "strconv.h"
 #include "math.h"
+#include "str.h"
+#include "io.h"
 
 #ifdef BIG_HEX
 const char *number_lut = "0123456789ABCDEF";
 #else
 const char *number_lut = "0123456789abcdef";
 #endif
+
+int atoi(const char *s){
+    int result = 0;
+    /* go backwards through the string from least significant
+     * to most significant digit, multiply it with the base (10).
+     * A char representing a digit can be converted to an integer
+     * by subtracting the char '0'. Multiply the base by itself after
+     * each iteration to go to the next digit (base 10: 1,10,100,1000,...)
+     *
+     * This is needed since numbers are read from right-to-left, but in 
+     * memory from left-to-right.
+     *
+     * E.g. the number 2000 gets stored as string "2000", where index
+     * 0 is 2.
+     */
+    for(int i=1,j=str_len(s)-1; j>=0; i*=10,j--){
+        result += i*(s[j]-'0');
+    }
+    return result;
+}
 
 const char* itoa(int val) {
   return itoa_base(val, 10);
