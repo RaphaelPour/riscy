@@ -15,7 +15,7 @@ const char* itoa(int val) {
 // https://clc-wiki.net/wiki/K&R2_solutions:Chapter_3:Exercise_4
 const char* itoa_base(int val, int base) {
   if (val == 0) {
-    return "0\0";
+    return "0";
   }
 
   static char buf[256];
@@ -31,7 +31,7 @@ const char* itoa_base(int val, int base) {
     buf[i++] = number_lut[val % base];
     val /=base;
   }
-  
+
   // append minus (if any), so it get to the front after reverse
   if(s == -1) buf[i++] = '-';
 
