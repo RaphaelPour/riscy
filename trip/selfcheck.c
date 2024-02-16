@@ -19,7 +19,7 @@ int departure(int luggage_num, const char *luggage[]) {
   io_puts("*******************************\n");
   io_puts("*      S E L F C H E C K      *\n"); 
   io_puts("*******************************\n");
-  
+
   io_puts("\n** Math\n");
   check(abs(-1) == 1, "abs(-1)=1");
   check(abs(1) == 1, "abs(1)=1");
@@ -33,10 +33,10 @@ int departure(int luggage_num, const char *luggage[]) {
   check(str_eq("selfcheck", "selfcheck"), "str_eq(\"selfcheck\",\"selfcheck\")");
   check(str_neq("selfcheck", "self"), "str_neq(\"selfcheck\",\"self\")");
   check(str_neq("selfcheck", ""), "str_neq(\"selfcheck\",\"\")");
-  
+
   io_puts("\n** String conversion\n");
   check(str_eq(itoa_base(255,10),"255"), "iota_base(255,10) == 255");
-  check(str_eq(itoa_base(15,2),"11111"), "iota_base(15,2) == 1111");
+  check(str_eq(itoa_base(15,2),"1111"), "iota_base(15,2) == 1111");
 #ifdef BIG_HEX
   check(str_eq(itoa_base(255,16),"FF"), "iota_base(255,16) == FF");
 #else

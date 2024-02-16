@@ -23,19 +23,19 @@ void free() {
 
 void memset(void *ptr, int value, size_t size) {
   for (size_t i = 0; i < size; i++) {
-    ((unsigned char *) p)[i] = (unsigned char) val;
+    ((unsigned char *) ptr)[i] = (unsigned char) value;
   }
 }
 
 void memcpy(void *dest, const void *src, size_t n) {
   for (size_t i = 0; i < n; i++) {
-    ((unsigned char *) d)[i] = ((const unsigned char *) s)[i];
+    ((unsigned char *) dest)[i] = ((const unsigned char *) src)[i];
   }
 }
 
 int memcmp(const void *dest, const void *src, size_t n) {
   for (size_t i = 0; i < n; i++) {
-    if (((const unsigned char *) s)[i] != ((const unsigned char *) d)[i]) {
+    if (((const unsigned char *) src)[i] != ((const unsigned char *) dest)[i]) {
       return 0;
     }
   }
