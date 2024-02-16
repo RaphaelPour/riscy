@@ -4,5 +4,7 @@
 
 void sleep(double seconds){
     uint64_t start = rtc_time();
-    while(((double)(rtc_time()-start))/100000000 < seconds);
+    while(((double)(rtc_time()-start))/100000000 < seconds){
+        asm volatile ("nop");
+    }
 }
