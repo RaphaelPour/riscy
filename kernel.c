@@ -3,6 +3,7 @@
 
 #include "core/io.h"
 #include "core/strconv.h"
+#include "core/memory.h"
 #include "driver/rtc.h"
 #include "driver/uart.h"
 #include "trip/selfcheck.h"
