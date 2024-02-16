@@ -17,7 +17,6 @@ void *malloc(size_t size) {
     return addr;
 }
 
-void free(void *ptr) {
-    (void) ptr;
+void free() {
     heap_size = 0;
 }
