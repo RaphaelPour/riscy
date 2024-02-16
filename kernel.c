@@ -24,6 +24,8 @@ void kmain(void) {
   io_bleep(itoa_base(255,16));
   io_bleep("\n");
 
+  death_predictor_departure(0,NULL);
+
   const char *input; 
   while(1) {
     io_bleep(u64toa(rtc_time()));
