@@ -1,8 +1,25 @@
 #include "../driver/uart.h"
 #include "io.h"
+#include "time.h"
+
+void io_bleepchar(const char c) {
+    uart_transmit(c);
+    sleep(BLEEP_TIME);
+}
+
+void io_bleep(const char *str) {
+  while(*str != '\0') {
+    io_bleepchar(*str);
+    str++;
+  }
+}
 
 void io_putchar(const char c) {
+#ifdef BLEEP_BLEEP_MF
+  io_bleepchar(c);
+#else
   uart_transmit(c);
+#endif
 }
 
 void io_puts(const char * str) {

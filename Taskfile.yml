@@ -17,13 +17,15 @@ tasks:
   build-johannes:
     needs: [clean]
     cmds:
-      - task build-fedora
+      - task build
+    env:
+      BUILD_FLAGS: "-DBLEEP_TIME=1"
   build-raphael:
     needs: [clean]
     cmds:
-      - task build-fedora
+      - task build
     env:
-      BUILD_FLAGS: "-DBIG_HEX"
+      BUILD_FLAGS: "-DBIG_HEX -DBLEEP_TIME=0.1 -DBLEEP_BLEEP_MF"
   boot:
     cmds:
       - qemu-system-riscv64 -machine virt -bios none -kernel kernel.elf -serial mon:stdio -rtc base={{.RTC_BASE_DATE}}
