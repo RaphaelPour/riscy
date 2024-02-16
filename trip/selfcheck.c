@@ -44,14 +44,14 @@ int departure(int luggage_num, const char *luggage[]) {
 #endif
 
     io_puts("\n** Memory allocation\n");
-    size_t first_allocation = (size_t) malloc(10);
-    check(first_allocation < (size_t) malloc(10), "malloc(10) < malloc(10)");
+    intptr_t first_allocation = (intptr_t) malloc(10);
+    check(first_allocation < (intptr_t) malloc(10), "malloc(10) < malloc(10)");
 
-    size_t addr_size = 50;
-    size_t addr = (size_t) malloc(addr_size);
-    check(addr + addr_size == (size_t) malloc(10), "malloc(50) + 50 == malloc(10)");
+    intptr_t addr_size = 50;
+    intptr_t addr = (intptr_t) malloc(addr_size);
+    check(addr + addr_size == (intptr_t) malloc(10), "malloc(50) + 50 == malloc(10)");
     free();
-    check((size_t) malloc(10) == first_allocation, "free(); malloc(10) == first_allocation");
+    check((intptr_t) malloc(10) == first_allocation, "free(); malloc(10) == first_allocation");
 
     int *malloc_a = malloc(sizeof(int));
     *malloc_a = 500;
