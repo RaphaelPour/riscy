@@ -2,6 +2,11 @@
 #include "io.h"
 #include "time.h"
 
+enum {
+    KEY_ENTER = 13,
+    KEY_BACK = 127
+};
+
 void io_bleepchar(const char c) {
     uart_transmit(c);
     sleep(BLEEP_TIME);
@@ -44,10 +49,14 @@ const char* io_getline() {
   static char buffer[256];
   char c;
   int i = 0;
-  while((c = uart_receive()) != 13){
-    if(!is_printable(c)) continue;
-    buffer[i++] = c;
-    io_putchar(c);
+  while((c = uart_receive()) != KEY_ENTER){
+    if(c == KEY_BACK){
+        buffer[i--] = '\0';
+        io_puts("\b \b");
+    } else if (is_printable(c)) {
+        buffer[i++] = c;
+        io_putchar(c);
+    }
   }
   buffer[i] = '\0';
   io_putchar('\n');
