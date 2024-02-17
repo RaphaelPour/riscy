@@ -7,7 +7,7 @@ int str_len(const char* s) {
 }
 
 int str_eq(const char *a, const char *b){
-  while(*a && *b  && *a++ == *b++);
+  for(;*a && *b  && *a == *b;*a++,*b++);
   return *a == *b;
 }
 
