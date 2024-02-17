@@ -32,9 +32,17 @@ void kmain(void) {
     io_bleep(prompt);
     input = io_getline();
     if(str_eq(input,"death-predictor")){
-        death_predictor_departure(0,NULL);
+        death_predictor_departure(0, NULL);
     } else if(str_eq(input, "selfcheck")){
         departure(0,NULL);
+    } else if(str_eq(input, "help")){
+        io_puts(" == A V A I L A B L E   T R I P S ==\n");
+        io_puts("|                                   |\n");
+        io_puts("| help ............ show this help  |\n");
+        io_puts("| selfcheck ....... test core lib   |\n");
+        io_puts("| death-predictor.. calculate your  |\n");
+        io_puts("|                   year of death   |\n");
+        io_puts(" ==================================\n");
     } else {
         io_puts("unknown command ");
         io_puts(input);
